@@ -9,26 +9,32 @@ import (
 func Migrate(db gorm.DB, l hclog.Logger) error {
 	err := db.AutoMigrate(
 		&models.Crypto{},
+		&models.CryptoTrade{},
+		&models.CryptoQuote{},
+		&models.CryptoQuoteLevel{},
+		&models.CryptoTransaction{},
+		&models.CryptoPortfolioComponent{},
+
 		&models.CryptoOption{},
 		&models.CryptoOptionObservation{},
 		&models.CryptoOptionQuote{},
+		&models.CryptoOptionQuoteLevel{},
 		&models.CryptoOptionTransaction{},
-		&models.CryptoTrade{},
-		&models.CryptoTransaction{},
+		&models.CryptoOptionPortfolioComponent{},
+
 		&models.Option{},
 		&models.OptionObservation{},
 		&models.OptionTransaction{},
-		&models.Portfolio{},
+		&models.OptionPortfolioComponent{},
+
 		&models.Stock{},
 		&models.StockQuote{},
 		&models.StockTrade{},
 		&models.StockTransaction{},
+		&models.StockPortfolioComponent{},
+
 		&models.Portfolio{},
 		&models.PortfolioSnapshot{},
-		&models.CryptoPortfolioComponent{},
-		&models.CryptoOptionPortfolioComponent{},
-		&models.StockPortfolioComponent{},
-		&models.OptionPortfolioComponent{},
 	)
 
 	if err != nil {

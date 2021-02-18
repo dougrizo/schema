@@ -10,7 +10,7 @@ type CryptoOptionQuote struct {
 	Timestamp      uint64       `json:"timestamp"`
 }
 
-type CryptoOptionQuoteLevelModel struct {
+type CryptoOptionQuoteLevel struct {
 	gorm.Model          `json:"-"`
 	ID                  int               `gorm:"primaryKey" json:"id"`
 	CryptoOptionQuoteID int               `json:"crypto_option_quote_id"`
