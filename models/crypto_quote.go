@@ -18,5 +18,5 @@ type CryptoQuoteLevel struct {
 	Level         uint8       `json:"level"`
 	IsBid         bool        `json:"is_bid"`
 	Price         float64     `json:"price"`
-	Size          uint64      `json:"size"`
+	Size          float64     `json:"size"`
 }
