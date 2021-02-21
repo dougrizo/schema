@@ -6,13 +6,17 @@ import (
 )
 
 type CryptoOption struct {
-	gorm.Model `json:"-"`
-	ID         int     `gorm:"primaryKey" json:"id"`
-	CryptoID   int     `json:"crypto_id"`
-	Crypto     Crypto  `json:"crypto"`
-	Expiration uint64  `json:"expiration"`
-	Strike     float32 `json:"strike"`
-	IsPut      bool    `json:"is_put"`
+	gorm.Model    `json:"-"`
+	ID            int         `gorm:"primaryKey" json:"id"`
+	CryptoID      int         `json:"crypto_id"`
+	Crypto        Crypto      `json:"crypto"`
+	CryptoQuoteID int         `json:"crypto_quote_id"` // Optionally associate crypto quote
+	CryptoQuote   CryptoQuote `json:"crypto_quote"`
+	CryptoTradeID int         `json:"crypto_trade_id"` // Optionally associate crypto trade
+	CryptoTrade   CryptoTrade `json:"crypto_trade"`
+	Expiration    uint64      `json:"expiration"`
+	Strike        float32     `json:"strike"`
+	IsPut         bool        `json:"is_put"`
 }
 
 func (co CryptoOption) fmt() string {

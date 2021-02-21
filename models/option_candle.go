@@ -7,32 +7,38 @@ import (
 
 type OptionCandle struct {
 	gorm.Model             `json:"-"`
-	ID                     int     `gorm:"primaryKey" json:"id"`
-	OptionID               int     `json:"option_id"`
-	Option                 Option  `json:"option"`
-	TradeTimeInLong        uint64  `json:"trade_time_in_long"`
-	QuoteTimeInLong        uint64  `json:"quote_time_in_long"`
-	Bid                    float32 `json:"bid"`
-	Ask                    float32 `json:"ask"`
-	Mark                   float32 `json:"mark"`
-	BidSize                int16   `json:"bid_size"`
-	AskSize                int16   `json:"ask_size"`
-	High                   float32 `json:"high"`
-	Low                    float32 `json:"low"`
-	Open                   float32 `json:"open"`
-	Close                  float32 `json:"close"`
-	Volume                 int32   `json:"volume"`
-	Volatility             float32 `json:"volatility"`
-	Delta                  float32 `json:"delta"`
-	Gamma                  float32 `json:"gamma"`
-	Theta                  float32 `json:"theta"`
-	Vega                   float32 `json:"vega"`
-	Rho                    float32 `json:"rho"`
-	OpenInterest           int32   `json:"open_interest"`
-	TimeValue              float32 `json:"time_value"`
-	TheoreticalOptionValue float32 `json:"theoretical_option_value"`
-	TheoreticalVolatility  float32 `json:"theoretical_volatility"`
-	DaysToExpiration       int32   `json:"days_to_expiration"`
+	ID                     int         `gorm:"primaryKey" json:"id"`
+	OptionID               int         `json:"option_id"`
+	Option                 Option      `json:"option"`
+	StockCandleID          int         `json:"stock_candle_id"` // Optionally associate stock candle.
+	StockCandle            StockCandle `json:"stock_candle"`
+	StockQuoteID           int         `json:"stock_quote_id"` // Optionally associate stock quote
+	StockQuote             StockQuote  `json:"stock_quote"`
+	StockTradeID           int         `json:"stock_trade_id"` // Optionally associate stock trade
+	StockTrade             StockTrade  `json:"stock_trade"`
+	TradeTimeInLong        uint64      `json:"trade_time_in_long"`
+	QuoteTimeInLong        uint64      `json:"quote_time_in_long"`
+	Bid                    float32     `json:"bid"`
+	Ask                    float32     `json:"ask"`
+	Mark                   float32     `json:"mark"`
+	BidSize                int16       `json:"bid_size"`
+	AskSize                int16       `json:"ask_size"`
+	High                   float32     `json:"high"`
+	Low                    float32     `json:"low"`
+	Open                   float32     `json:"open"`
+	Close                  float32     `json:"close"`
+	Volume                 int32       `json:"volume"`
+	Volatility             float32     `json:"volatility"`
+	Delta                  float32     `json:"delta"`
+	Gamma                  float32     `json:"gamma"`
+	Theta                  float32     `json:"theta"`
+	Vega                   float32     `json:"vega"`
+	Rho                    float32     `json:"rho"`
+	OpenInterest           int32       `json:"open_interest"`
+	TimeValue              float32     `json:"time_value"`
+	TheoreticalOptionValue float32     `json:"theoretical_option_value"`
+	TheoreticalVolatility  float32     `json:"theoretical_volatility"`
+	DaysToExpiration       int32       `json:"days_to_expiration"`
 }
 
 func (oc OptionCandle) fmt() string {
