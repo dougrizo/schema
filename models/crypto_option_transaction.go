@@ -1,6 +1,9 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"fmt"
+	"gorm.io/gorm"
+)
 
 type CryptoOptionTransaction struct {
 	gorm.Model     `json:"-"`
@@ -8,6 +11,22 @@ type CryptoOptionTransaction struct {
 	CryptoOptionID int          `json:"crypto_option_id"`
 	CryptoOption   CryptoOption `json:"crypto_option"`
 	Timestamp      uint64       `json:"timestamp"`
-	Price          float64      `json:"price"`
-	Size           uint64       `json:"size"`
+	Price          float32      `json:"price"`
+	Size           int32        `json:"size"`
+}
+
+func (co CryptoOptionTransaction) fmt() string {
+	return fmt.Sprintf("timestamp=%d, price=%.2f, size=%d", co.Timestamp, co.Price, co.Size)
+}
+
+func (co CryptoOptionTransaction) fmtFull() string {
+	return fmt.Sprintf("%s, %s", co.CryptoOption.fmtFull(), co.fmt())
+}
+
+func (co CryptoOptionTransaction) Log() string {
+	return fmt.Sprintf("a cryptoasset option transaction: %s", co.fmt())
+}
+
+func (co CryptoOptionTransaction) LogFull() string {
+	return fmt.Sprintf("a cryptoasset option transaction: %s", co.fmtFull())
 }

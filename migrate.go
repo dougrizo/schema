@@ -16,14 +16,14 @@ func Migrate(db gorm.DB, l hclog.Logger) error {
 		&models.CryptoPortfolioComponent{},
 
 		&models.CryptoOption{},
-		&models.CryptoOptionObservation{},
+		&models.CryptoOptionCandle{},
 		&models.CryptoOptionQuote{},
 		&models.CryptoOptionQuoteLevel{},
 		&models.CryptoOptionTransaction{},
 		&models.CryptoOptionPortfolioComponent{},
 
 		&models.Option{},
-		&models.OptionObservation{},
+		&models.OptionCandle{},
 		&models.OptionTransaction{},
 		&models.OptionPortfolioComponent{},
 
