@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func Migrate(db gorm.DB, l hclog.Logger) error {
+func Migrate(db *gorm.DB, l hclog.Logger) error {
 	err := db.AutoMigrate(
 		&models.Crypto{},
 		&models.CryptoTrade{},
