@@ -8,9 +8,9 @@ import (
 type CryptoOptionTransaction struct {
 	gorm.Model     `json:"-"`
 	ID             int          `gorm:"primaryKey" json:"id"`
-	CryptoOptionID int          `json:"crypto_option_id"`
+	CryptoOptionID int          `gorm:"index:idx_crypto_option_transaction,unique" json:"crypto_option_id"`
 	CryptoOption   CryptoOption `json:"crypto_option"`
-	Timestamp      uint64       `json:"timestamp"`
+	Timestamp      uint64       `gorm:"index:idx_crypto_option_transaction,unique" json:"timestamp"`
 	Price          float32      `json:"price"`
 	Size           int32        `json:"size"`
 }

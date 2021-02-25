@@ -8,9 +8,9 @@ import (
 type CryptoOptionQuote struct {
 	gorm.Model     `json:"-"`
 	ID             int          `gorm:"primaryKey" json:"id"`
-	CryptoOptionID int          `json:"crypto_option_id"`
+	CryptoOptionID int          `gorm:"index:idx_crypto_option_quote,unique" json:"crypto_option_id"`
 	CryptoOption   CryptoOption `json:"crypto_option"`
-	Timestamp      uint64       `json:"timestamp"`
+	Timestamp      uint64       `gorm:"index:idx_crypto_option_quote,unique" json:"timestamp"`
 }
 
 func (co CryptoOptionQuote) fmt() string {
@@ -32,10 +32,10 @@ func (co CryptoOptionQuote) logFull() string {
 type CryptoOptionQuoteLevel struct {
 	gorm.Model          `json:"-"`
 	ID                  int               `gorm:"primaryKey" json:"id"`
-	CryptoOptionQuoteID int               `json:"crypto_option_quote_id"`
+	CryptoOptionQuoteID int               `gorm:"index:idx_crypto_option_quote_level,unique" json:"crypto_option_quote_id"`
 	CryptoOptionQuote   CryptoOptionQuote `json:"crypto_option_quote"`
-	Level               uint8             `json:"level"`
-	IsBid               bool              `json:"is_bid"`
+	Level               uint8             `gorm:"index:idx_crypto_option_quote_level,unique" json:"level"`
+	IsBid               bool              `gorm:"index:idx_crypto_option_quote_level,unique" json:"is_bid"`
 	Price               float32           `json:"price"`
 	Size                int32             `json:"size"`
 }

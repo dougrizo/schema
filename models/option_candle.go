@@ -8,7 +8,7 @@ import (
 type OptionCandle struct {
 	gorm.Model             `json:"-"`
 	ID                     int         `gorm:"primaryKey" json:"id"`
-	OptionID               int         `json:"option_id"`
+	OptionID               int         `gorm:"index:idx_option_candle,unique" json:"option_id"`
 	Option                 Option      `json:"option"`
 	StockCandleID          int         `json:"stock_candle_id"` // Optionally associate stock candle.
 	StockCandle            StockCandle `json:"stock_candle"`
@@ -16,8 +16,8 @@ type OptionCandle struct {
 	StockQuote             StockQuote  `json:"stock_quote"`
 	StockTradeID           int         `json:"stock_trade_id"` // Optionally associate stock trade
 	StockTrade             StockTrade  `json:"stock_trade"`
-	TradeTimeInLong        uint64      `json:"trade_time_in_long"`
-	QuoteTimeInLong        uint64      `json:"quote_time_in_long"`
+	TradeTimeInLong        uint64      `gorm:"index:idx_option_candle,unique" json:"trade_time_in_long"`
+	QuoteTimeInLong        uint64      `gorm:"index:idx_option_candle,unique" json:"quote_time_in_long"`
 	Bid                    float32     `json:"bid"`
 	Ask                    float32     `json:"ask"`
 	Mark                   float32     `json:"mark"`

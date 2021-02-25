@@ -8,9 +8,9 @@ import (
 type CryptoTrade struct {
 	gorm.Model  `json:"-"`
 	ID          int     `gorm:"primaryKey" json:"-"`
-	CryptoID    int     `json:"crypto_id"`
+	CryptoID    int     `gorm:"index:idx_crypto_trade,unique" json:"crypto_id"`
 	Crypto      Crypto  `json:"crypto"`
-	Timestamp   uint64  `json:"timestamp"`
+	Timestamp   uint64  `gorm:"index:idx_crypto_trade,unique" json:"timestamp"`
 	Price       float32 `json:"price"`
 	Size        int32   `json:"size"`
 	MarketMaker bool    `json:"market_maker"`

@@ -8,9 +8,9 @@ import (
 type CryptoQuote struct {
 	gorm.Model `json:"-"`
 	ID         int    `gorm:"primaryKey" json:"id"`
-	CryptoID   int    `json:"crypto_id"`
+	CryptoID   int    `gorm:"index:idx_crypto_quote" json:"crypto_id"`
 	Crypto     Crypto `json:"crypto"`
-	Timestamp  uint64 `json:"timestamp"`
+	Timestamp  uint64 `gorm:"index:idx_crypto_quote" json:"timestamp"`
 }
 
 func (cq CryptoQuote) fmt() string {
@@ -32,10 +32,10 @@ func (cq CryptoQuote) LogFull() string {
 type CryptoQuoteLevel struct {
 	gorm.Model    `json:"-"`
 	ID            int         `gorm:"primaryKey" json:"id"`
-	CryptoQuoteID int         `json:"crypto_quote_id"`
+	CryptoQuoteID int         `gorm:"index:idx_crypto_quote_level,unique" json:"crypto_quote_id"`
 	CryptoQuote   CryptoQuote `json:"crypto_quote"`
-	Level         uint8       `json:"level"`
-	IsBid         bool        `json:"is_bid"`
+	Level         uint8       `gorm:"index:idx_crypto_quote_level,unique" json:"level"`
+	IsBid         bool        `gorm:"index:idx_crypto_quote_level,unique" json:"is_bid"`
 	Price         float32     `json:"price"`
 	Size          float32     `json:"size"`
 }

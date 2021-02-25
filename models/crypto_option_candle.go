@@ -8,10 +8,10 @@ import (
 type CryptoOptionCandle struct {
 	gorm.Model     `json:"-"`
 	ID             int          `gorm:"primaryKey" json:"id"`
-	CryptoOptionID int          `json:"crypto_option_id"`
+	CryptoOptionID int          `gorm:"index:idx_crypto_option_candle,unique" json:"crypto_option_id"`
 	CryptoOption   CryptoOption `json:"crypto_option"`
 	Interval       string       `json:"interval"`
-	OpenTime       uint64       `json:"open_time"`
+	OpenTime       uint64       `gorm:"index:idx_crypto_option_candle,unique" json:"open_time"`
 	CloseTime      uint64       `json:"close_time"`
 	Open           float32      `json:"open"`
 	High           float32      `json:"high"`

@@ -8,7 +8,7 @@ import (
 type Crypto struct {
 	gorm.Model `json:"-"`
 	ID         int    `gorm:"primaryKey" json:"id"`
-	Symbol     string `json:"symbol"`
+	Symbol     string `gorm:"index:idx_crypto,unique" json:"symbol"`
 	Hot        bool   `json:"hot"`
 }
 

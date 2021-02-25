@@ -8,9 +8,9 @@ import (
 type StockTransaction struct {
 	gorm.Model `json:"-"`
 	ID         int     `gorm:"primaryKey" json:"id"`
-	StockID    int     `json:"stock_id"`
+	StockID    int     `gorm:"index:idx_stock_transaction,unique" json:"stock_id"`
 	Stock      Stock   `json:"stock"`
-	Timestamp  uint64  `json:"timestamp"`
+	Timestamp  uint64  `gorm:"index:idx_stock_transaction,unique" json:"timestamp"`
 	Price      float32 `json:"price"`
 	Size       int32   `json:"volume"`
 }

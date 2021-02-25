@@ -8,7 +8,7 @@ import (
 type Stock struct {
 	gorm.Model
 	ID     int    `gorm:"primaryKey"`
-	Symbol string `json:"symbol"`
+	Symbol string `gorm:"index:idx_stock,unique" json:"symbol"`
 	Hot    bool   `json:"hot"`
 }
 

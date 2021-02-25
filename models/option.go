@@ -8,11 +8,11 @@ import (
 type Option struct {
 	gorm.Model     `json:"-"`
 	ID             int     `gorm:"primaryKey" json:"id"`
-	StockID        int     `json:"stock_id"`
+	StockID        int     `gorm:"index:idx_option,unique" json:"stock_id"`
 	Stock          Stock   `json:"stock"`
-	Expiration     uint64  `json:"expiration"`
-	Strike         float32 `json:"strike"`
-	IsPut          bool    `json:"is_put"`
+	Expiration     uint64  `gorm:"index:idx_option,unique" json:"expiration"`
+	Strike         float32 `gorm:"index:idx_option,unique" json:"strike"`
+	IsPut          bool    `gorm:"index:idx_option,unique" json:"is_put"`
 	ExpirationType string  `json:"expiration_type"`
 	NonStandard    bool    `json:"non_standard"`
 	Mini           bool    `json:"mini"`
