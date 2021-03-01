@@ -1,7 +1,7 @@
 package schema
 
 import (
-	"github.com/dougrizo/schema/models"
+	"github.com/dougrizo/schema/go/schema/models"
 	"github.com/hashicorp/go-hclog"
 	"gorm.io/gorm"
 )

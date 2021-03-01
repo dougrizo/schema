@@ -1,0 +1,25 @@
+syntax = "proto3";
+package cyrpto;
+
+option go_package = "github.com/dougrizo/schema/go/schema";
+
+service Crypto {
+    rpc GetCrypto(CryptoPayload) returns (CryptoPayload) {}
+    rpc GetCryptos(CryptoPayloads) returns (CryptoPayloads) {}
+    rpc CreateCrypto(CryptoPayload) returns (CryptoResponse) {}
+    rpc CreateCryptos(CryptoPayloads) returns (CryptoResponse) {}
+}
+
+message CryptoPayload {
+    string symbol = 1;
+    bool hot = 2;
+}
+
+message CryptoPayloads {
+    repeated CryptoPayload payloads = 1;
+}
+
+message CryptoResponse {
+    bool success = 1;
+    string error = 2;
+}

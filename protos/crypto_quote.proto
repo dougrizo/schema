@@ -1,0 +1,54 @@
+syntax = "proto3";
+package crypto_quote;
+
+option go_package = "github.com/dougrizo/schema/go/schema";
+
+service CryptoQuote {
+  rpc GetCryptoQuote(CryptoQuoteFilter) returns (CryptoQuotePayload) {}
+  rpc GetCryptoQuotes(CryptoQuoteFilter) returns (CryptoQuotePayloads) {}
+  rpc StreamGetCryptoQuotes(CryptoQuoteFilter) returns (stream CryptoQuotePayload) {}
+  rpc CreateCryptoQuote(CryptoQuotePayload) returns (CryptoQuoteResponse) {}
+  rpc CreateCryptoQuotes(CryptoQuotePayloads) returns (CryptoQuoteResponse) {}
+  rpc StreamCreateCryptoQuotes(stream CryptoQuotePayload) returns (CryptoQuoteResponse) {}
+  rpc DeleteCryptoQuotes(CryptoQuoteFilter) returns (CryptoQuoteResponse) {}
+}
+
+message CryptoQuotePayloads {
+  repeated CryptoQuotePayload payloads = 1;
+}
+
+message CryptoQuoteResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message CryptoQuotePayload {
+  string pair = 1;
+  int64 timestamp = 2;
+  float bid1 = 3;
+  float bid_size1 = 4;
+  float bid2 = 5;
+  float bid_size2 = 6;
+  float bid3 = 7;
+  float bid_size3 = 8;
+  float bid4 = 9;
+  float bid_size4 = 10;
+  float bid5 = 11;
+  float bid_size5 = 12;
+  float ask1 = 13;
+  float ask_size1 = 14;
+  float ask2 = 15;
+  float ask_size2 = 16;
+  float ask3 = 17;
+  float ask_size3 = 18;
+  float ask4 = 19;
+  float ask_size4 = 20;
+  float ask5 = 21;
+  float ask_size5 = 22;
+}
+
+message CryptoQuoteFilter {
+  string symbol = 1;
+  int64 before = 2;
+  int64 after = 3;
+}
