@@ -48,7 +48,7 @@ message CryptoQuotePayload {
 }
 
 message CryptoQuoteFilter {
-  string symbol = 1;
+  string pair = 1;
   int64 before = 2;
   int64 after = 3;
 }

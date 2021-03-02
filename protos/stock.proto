@@ -1,0 +1,25 @@
+syntax = "proto3";
+package stock;
+
+option go_package = "github.com/dougrizo/schema/go/schema";
+
+service Stock {
+  rpc GetStock(StockPayload) returns (StockPayload) {}
+  rpc GetStocks(StockPayload) returns (StockPayloads) {}
+  rpc CreateStock(StockPayload) returns (StockResponse) {}
+  rpc CreateStocks(StockPayloads) returns (StockResponse) {}
+}
+
+message StockResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message StockPayloads {
+  repeated StockPayload payloads = 1;
+}
+
+message StockPayload {
+  string symbol = 1;
+  bool hot = 2;
+}

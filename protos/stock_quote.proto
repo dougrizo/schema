@@ -1,0 +1,38 @@
+syntax = "proto3";
+package stock_quote;
+
+option go_package = "github.com/dougrizo/schema/go/schema";
+
+service StockQuote {
+  rpc GetStockQuote(StockQuoteFilter) returns (StockQuotePayload) {}
+  rpc GetStockQuotes(StockQuoteFilter) returns (StockQuotePayloads) {}
+  rpc StreamGetStockQuotes(StockQuoteFilter) returns (stream StockQuotePayload) {}
+  rpc CreateStockQuote(StockQuotePayload) returns (StockQuoteResponse) {}
+  rpc CreateStockQuotes(StockQuotePayloads) returns (StockQuoteResponse) {}
+  rpc StreamCreateStockQuotes(stream StockQuotePayload) returns (StockQuoteResponse) {}
+  rpc DeleteStockQuotes(StockQuoteFilter) returns (StockQuoteResponse) {}
+}
+
+message StockQuoteResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message StockQuotePayloads {
+  repeated StockQuotePayload payloads = 1;
+}
+
+message StockQuotePayload {
+  string symbol = 1;
+  int64 timestamp = 2;
+  float bid = 3;
+  float bid_size = 4;
+  float ask = 5;
+  float ask_size = 6;
+}
+
+message StockQuoteFilter {
+  string symbol = 1;
+  int64 before = 2;
+  int64 after = 3;
+}
