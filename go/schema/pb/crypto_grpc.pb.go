@@ -19,7 +19,7 @@ const _ = grpc.SupportPackageIsVersion7
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CryptoClient interface {
 	GetCrypto(ctx context.Context, in *CryptoPayload, opts ...grpc.CallOption) (*CryptoPayload, error)
-	GetCryptos(ctx context.Context, in *CryptoPayloads, opts ...grpc.CallOption) (*CryptoPayloads, error)
+	GetCryptos(ctx context.Context, in *CryptoPayload, opts ...grpc.CallOption) (*CryptoPayloads, error)
 	CreateCrypto(ctx context.Context, in *CryptoPayload, opts ...grpc.CallOption) (*CryptoResponse, error)
 	CreateCryptos(ctx context.Context, in *CryptoPayloads, opts ...grpc.CallOption) (*CryptoResponse, error)
 }
@@ -41,7 +41,7 @@ func (c *cryptoClient) GetCrypto(ctx context.Context, in *CryptoPayload, opts ..
 	return out, nil
 }
 
-func (c *cryptoClient) GetCryptos(ctx context.Context, in *CryptoPayloads, opts ...grpc.CallOption) (*CryptoPayloads, error) {
+func (c *cryptoClient) GetCryptos(ctx context.Context, in *CryptoPayload, opts ...grpc.CallOption) (*CryptoPayloads, error) {
 	out := new(CryptoPayloads)
 	err := c.cc.Invoke(ctx, "/cyrpto.Crypto/GetCryptos", in, out, opts...)
 	if err != nil {
@@ -73,7 +73,7 @@ func (c *cryptoClient) CreateCryptos(ctx context.Context, in *CryptoPayloads, op
 // for forward compatibility
 type CryptoServer interface {
 	GetCrypto(context.Context, *CryptoPayload) (*CryptoPayload, error)
-	GetCryptos(context.Context, *CryptoPayloads) (*CryptoPayloads, error)
+	GetCryptos(context.Context, *CryptoPayload) (*CryptoPayloads, error)
 	CreateCrypto(context.Context, *CryptoPayload) (*CryptoResponse, error)
 	CreateCryptos(context.Context, *CryptoPayloads) (*CryptoResponse, error)
 	mustEmbedUnimplementedCryptoServer()
@@ -86,7 +86,7 @@ type UnimplementedCryptoServer struct {
 func (UnimplementedCryptoServer) GetCrypto(context.Context, *CryptoPayload) (*CryptoPayload, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCrypto not implemented")
 }
-func (UnimplementedCryptoServer) GetCryptos(context.Context, *CryptoPayloads) (*CryptoPayloads, error) {
+func (UnimplementedCryptoServer) GetCryptos(context.Context, *CryptoPayload) (*CryptoPayloads, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCryptos not implemented")
 }
 func (UnimplementedCryptoServer) CreateCrypto(context.Context, *CryptoPayload) (*CryptoResponse, error) {
@@ -127,7 +127,7 @@ func _Crypto_GetCrypto_Handler(srv interface{}, ctx context.Context, dec func(in
 }
 
 func _Crypto_GetCryptos_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CryptoPayloads)
+	in := new(CryptoPayload)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -139,7 +139,7 @@ func _Crypto_GetCryptos_Handler(srv interface{}, ctx context.Context, dec func(i
 		FullMethod: "/cyrpto.Crypto/GetCryptos",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CryptoServer).GetCryptos(ctx, req.(*CryptoPayloads))
+		return srv.(CryptoServer).GetCryptos(ctx, req.(*CryptoPayload))
 	}
 	return interceptor(ctx, in, info, handler)
 }
