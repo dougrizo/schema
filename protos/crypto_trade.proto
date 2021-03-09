@@ -1,0 +1,37 @@
+syntax = "proto3";
+package crypto_trade;
+
+option go_package = "github.com/dougrizo/schema/go/schema";
+
+service CryptoTrade {
+  rpc GetCryptoTrade(CryptoTradeFilter) returns (CryptoTradePayload) {}
+  rpc GetCryptoTrades(CryptoTradeFilter) returns (CryptoTradePayloads) {}
+  rpc StreamGetCryptoTrades(CryptoTradeFilter) returns (stream CryptoTradePayload) {}
+  rpc CreateCryptoTrade(CryptoTradePayload) returns (CryptoTradeResponse) {}
+  rpc CreateCryptoTrades(CryptoTradePayloads) returns (CryptoTradeResponse) {}
+  rpc StreamCreateCryptoTrades(stream CryptoTradePayload) returns (CryptoTradeResponse) {}
+  rpc DeleteCryptoTrades(CryptoTradeFilter) returns (CryptoTradeResponse) {}
+}
+
+message CryptoTradePayloads {
+  repeated CryptoTradePayload payloads = 1;
+}
+
+message CryptoTradeResponse {
+  bool success = 1;
+  string error = 2;
+}
+
+message CryptoTradePayload {
+  string pair = 1;
+  int64 timestamp = 2;
+  float price = 3;
+  float quantity = 4;
+  float is_market_maker = 5;
+}
+
+message CryptoQuoteFilter {
+  string pair = 1;
+  int64 before = 2;
+  int64 after = 3;
+}
