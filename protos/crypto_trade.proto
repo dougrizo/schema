@@ -27,7 +27,7 @@ message CryptoTradePayload {
   int64 timestamp = 2;
   float price = 3;
   float quantity = 4;
-  float is_market_maker = 5;
+  bool is_market_maker = 5;
 }
 
 message CryptoTradeFilter {
